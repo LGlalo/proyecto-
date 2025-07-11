@@ -1,0 +1,140 @@
+.header-verde {
+  background: #21884d;
+  color: #fff;
+  margin-bottom: 0 !important;
+
+}
+.header-verde h1,
+.header-verde span {
+  color: #fff !important;
+}
+.logo-grande {
+  height: 130px;
+  width: auto;
+  margin-right: 30px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 30px #5ad6ffcc);
+  transition: filter 0.2s;
+}
+@media (max-width: 600px) {
+  .logo-grande {
+    height: 80px;
+    margin-right: 16px;
+  }
+  .header-verde h1 {
+    font-size: 1.3rem;
+  }
+}
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://www.peru.travel/Contenido/General/Imagen/es/69/1.1/Principal/lago-titicaca-puno.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 0;
+  margin-bottom: 30px;
+  text-align: center;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 50px;   /* Ajústalo a tu gusto */
+  padding-bottom: 50px; /* Ajústalo a tu gusto */
+
+}
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+.tour-card {
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.tour-card:hover {
+  transform: translateY(-5px);
+}
+.map-container {
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.modal-img {
+  max-height: 70vh;
+  object-fit: contain;
+}
+.btn-download {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+.pointer { cursor: pointer; }
+
+.sidebar-perfil {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 270px;
+  height: 100vh;
+  position: fixed;
+  left: -270px;
+  top: 0;
+  background: #fff;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  z-index: 1100;
+  transition: left 0.25s;
+}
+#sidebarPerfilContenido {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+.sidebar-cerrar-sesion {
+  padding: 16px;
+  margin-top: auto;
+  background: #dc3545;
+  text-align: center;
+}
+.sidebar-cerrar-sesion .btn {
+  font-weight: bold;
+  font-size: 1.13rem;
+  border-radius: 10px;
+  background: #dc3545;
+  border: none;
+}
+
+
+.sidebar-perfil.abierto {
+  left: 0;        /* Visible */
+}
+.perfil-header {
+  border-bottom: 1px solid #eee;
+}
+.sidebar-perfil .nav-link {
+  color: #333;
+  font-size: 1.07rem;
+  padding: 12px 24px;
+  border-radius: 0;
+  transition: background 0.2s;
+}
+.sidebar-perfil .nav-link:hover,
+.sidebar-perfil .nav-link.active {
+  background: #f8d7da;
+  color: #c82333;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30,30,30,0.45);
+  z-index: 1099;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.sidebar-overlay.visible {
+  display: block;
+  opacity: 1;
+}
