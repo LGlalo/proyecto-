@@ -36,8 +36,8 @@
   text-align: center;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-  padding-top: 50px;   /* Ajústalo a tu gusto */
-  padding-bottom: 50px; /* Ajústalo a tu gusto */
+  padding-top: 50px;  
+  padding-bottom: 50px; 
 
 }
 .card-img-top {
@@ -104,7 +104,7 @@
 
 
 .sidebar-perfil.abierto {
-  left: 0;        /* Visible */
+  left: 0;    
 }
 .perfil-header {
   border-bottom: 1px solid #eee;
