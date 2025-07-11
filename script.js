@@ -1,4 +1,4 @@
-  // ---- USUARIOS: Registro, Login, Sesión ----
+
   function obtenerUsuarios() {
     return JSON.parse(localStorage.getItem('usuarios') || "[]");
   }
@@ -28,7 +28,7 @@
   window.mostrarModalLogin = mostrarModalLogin;
   window.cerrarSesion = cerrarSesion;
 
-  // ---- REGISTRO DE USUARIO (con fecha y nacionalidad) ----
+
   document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('formRegistroUsuario')) {
       document.getElementById('formRegistroUsuario').onsubmit = function(e) {
@@ -77,7 +77,7 @@
     actualizarEstadoSesion();
   });
 
-  // ---- ACTUALIZAR SESIÓN (bloquea o desbloquea registro de hoteles/atractivos) ----
+
 function actualizarEstadoSesion() {
   const usuario = obtenerUsuarioSesion();
   const saludo = document.getElementById('saludoUsuario');
@@ -119,7 +119,6 @@ if (usuario) {
 }
 
 
-  // ---- GESTIÓN DE HOTELES Y ATRACTIVOS (igual que antes) ----
   function obtenerDatos() {
     return {
       hoteles: JSON.parse(localStorage.getItem('hoteles') || "[]"),
@@ -201,7 +200,7 @@ function agregarAtractivo() {
   const descripcion = document.getElementById('descripcionAtractivo').value.trim();
   if (nombre && ubicacion && descripcion) {
     const datos = obtenerDatos();
-    datos.atractivos.push({ nombre, ubicacion, descripcion }); // <-- aquí
+    datos.atractivos.push({ nombre, ubicacion, descripcion });
     guardarDatos('atractivos', datos.atractivos);
     mostrarAtractivos();
     document.getElementById('formAtractivo').reset();
@@ -269,7 +268,7 @@ function agregarAtractivo() {
     } else {
       favs.splice(i, 1);
     }
-    // Actualiza en LocalStorage
+   
     let usuarios = obtenerUsuarios();
     let uidx = usuarios.findIndex(u => u.correo === usuario.correo);
     usuarios[uidx].favoritos = usuario.favoritos;
@@ -293,7 +292,7 @@ function agregarAtractivo() {
     } else {
       favs.splice(i, 1);
     }
-    // Actualiza en LocalStorage
+ 
     let usuarios = obtenerUsuarios();
     let uidx = usuarios.findIndex(u => u.correo === usuario.correo);
     usuarios[uidx].favoritos = usuario.favoritos;
@@ -368,7 +367,7 @@ function mostrarAtractivos() {
     document.getElementById('tipoLugar').addEventListener('change', mostrarFormulario);
   });
 
-  // ---- DESCARGA Y MODAL DE RECORRIDO VIRTUAL ----
+
   function descargarArchivo(){
     alert("Función de descarga aún no implementada.");
   }
@@ -382,7 +381,7 @@ function mostrarAtractivos() {
   }
   window.mostrarModal = mostrarModal;
 
-  // Lista de recomendaciones (puedes agregar más)
+
   const recomendaciones = [
      
   {
@@ -464,16 +463,16 @@ function mostrarAtractivos() {
 
   ];
 
-  // Mostrar la sección de recomendaciones y ocultar otras
+
   function mostrarRecomendaciones() {
-    document.getElementById('seccionPerfil').style.display = 'none'; // <- esto
+    document.getElementById('seccionPerfil').style.display = 'none';
     document.getElementById('seccionRecomendaciones').style.display = 'block';
     window.scrollTo({ top: document.getElementById('seccionRecomendaciones').offsetTop - 70, behavior: "smooth" });
     renderizarRecomendaciones();
   }
   window.mostrarRecomendaciones = mostrarRecomendaciones;
 
-  // Renderizar las tarjetas de recomendaciones
+ 
   function renderizarRecomendaciones() {
   const cont = document.getElementById('listaRecomendaciones');
   cont.innerHTML = recomendaciones.map((r, idx) => `
@@ -491,7 +490,7 @@ function mostrarAtractivos() {
 }
 
 
-  // Mostrar modal con info de recomendación
+
   function mostrarModalRecomendacion(idx) {
     const r = recomendaciones[idx];
     document.getElementById('modalRecTitulo').innerText = r.titulo;
@@ -502,14 +501,13 @@ function mostrarAtractivos() {
   }
   window.mostrarModalRecomendacion = mostrarModalRecomendacion;
 
-  // === PERFIL DE USUARIO: VER, EDITAR Y GUARDAR ===
 
   function mostrarPerfil() {
   document.getElementById('seccionPerfil').style.display = 'block';
   if (document.getElementById('seccionRecomendaciones'))
     document.getElementById('seccionRecomendaciones').style.display = 'none';
 
-  // Oculta ambas secciones por defecto
+
   document.getElementById('seccionFavoritosPerfil').style.display = 'none';
   document.getElementById('seccionEditarPerfil').style.display = 'none';
 }
@@ -519,7 +517,6 @@ function mostrarFavoritosUsuario() {
   const usuario = obtenerUsuarioSesion();
   if (!usuario) return;
 
-  // HOTELS
   const hoteles = obtenerDatos().hoteles;
   const favHoteles = usuario.favoritos && usuario.favoritos.hoteles ? usuario.favoritos.hoteles : [];
   const listaHoteles = document.getElementById('favoritosHotelesLista');
@@ -533,7 +530,6 @@ function mostrarFavoritosUsuario() {
         </li>`
       ).join('');
 
-  // ATRACTIVOS
   const atractivos = obtenerDatos().atractivos;
   const favAtractivos = usuario.favoritos && usuario.favoritos.atractivos ? usuario.favoritos.atractivos : [];
   const listaAtractivos = document.getElementById('favoritosAtractivosLista');
@@ -549,7 +545,6 @@ function mostrarFavoritosUsuario() {
 }
 
 
-  // FUNCION para rellenar datos del perfil
   function cargarDatosPerfil() {
     const usuario = obtenerUsuarioSesion();
     if (!usuario) {
@@ -561,13 +556,13 @@ function mostrarFavoritosUsuario() {
     document.getElementById('perfilNacimiento').value = usuario.nacimiento || '';
     document.getElementById('perfilNacionalidad').value = usuario.nacionalidad || '';
     document.getElementById('perfilTelefono').value = usuario.telefono || '';
-    // El campo contraseña lo puedes dejar con asteriscos
+ 
     document.getElementById('perfilClave').value = "********";
   }
 let tipoComentario = null;
 let idxComentario = null;
 
-// Mostrar comentarios (general: para hoteles o atractivos)
+
 function mostrarComentarios(tipo, idx) {
   tipoComentario = tipo;
   idxComentario = idx;
@@ -594,7 +589,7 @@ function mostrarComentarios(tipo, idx) {
 }
 window.mostrarComentarios = mostrarComentarios;
 
-// Agregar comentario (sirve para ambos)
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const formComentario = document.getElementById('formComentario');
@@ -634,9 +629,9 @@ function saveComentarios(tipo, idx, comentarios) {
   localStorage.setItem(key, JSON.stringify(comentarios));
 }
 
-// Función para mostrar comentarios
+
 function mostrarComentarios(tipo, idx) {
-  // Mostrar modal
+
   const datos = obtenerDatos();
   let titulo = "";
   if (tipo === "hotel") {
@@ -646,7 +641,7 @@ function mostrarComentarios(tipo, idx) {
   }
   document.getElementById('modalComentariosTitulo').innerText = titulo;
 
-  // Mostrar lista de comentarios
+
   const comentarios = getComentarios(tipo, idx);
   const ul = document.getElementById('comentariosLista');
   if (!comentarios.length) {
@@ -657,20 +652,18 @@ function mostrarComentarios(tipo, idx) {
     ).join('');
   }
 
-  // Resetear textarea
+  
   document.getElementById('comentarioTexto').value = "";
 
-  // Guardar tipo e idx temporalmente en el form para usar en submit
+
   const form = document.getElementById('formAgregarComentario');
   form.setAttribute('data-tipo', tipo);
   form.setAttribute('data-idx', idx);
 
-  // Mostrar modal
   new bootstrap.Modal(document.getElementById('modalComentarios')).show();
 }
 window.mostrarComentarios = mostrarComentarios;
 
-// Evento para agregar comentario
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('formAgregarComentario');
   if (form) {
@@ -691,7 +684,7 @@ document.addEventListener('DOMContentLoaded', function () {
         texto: texto
       });
       saveComentarios(tipo, idx, comentarios);
-      mostrarComentarios(tipo, idx); // Refrescar
+      mostrarComentarios(tipo, idx);
     };
   }
 });
@@ -705,7 +698,7 @@ function mostrarSeccionPerfil(seccion) {
 window.mostrarSeccionPerfil = mostrarSeccionPerfil;
 
 function abrirSidebarPerfil() {
-  cargarSidebarEditar(); // Por defecto abre el perfil
+  cargarSidebarEditar(); 
   document.getElementById('sidebarPerfil').classList.add('abierto');
   document.getElementById('sidebarOverlay').classList.add('visible');
 }
@@ -718,7 +711,7 @@ window.cerrarSidebarPerfil = cerrarSidebarPerfil;
 
 
 
-// Mostrar solo el contenido "Editar perfil" en el sidebar
+
 function cargarSidebarEditar() {
   const usuario = obtenerUsuarioSesion();
   if (!usuario) return;
@@ -754,10 +747,9 @@ function cargarSidebarEditar() {
       <button type="button" id="btnCancelarPerfil" class="btn btn-secondary w-100 mt-2 d-none" onclick="cargarSidebarEditar()">Cancelar</button>
     </form>
   `;
-  // Aquí puedes agregar lógica para editar si lo deseas
+
 }
 
-// Mostrar solo el contenido "Favoritos" en el sidebar
 function cargarSidebarFavoritos() {
   const usuario = obtenerUsuarioSesion();
   const hoteles = obtenerDatos().hoteles;
@@ -767,7 +759,6 @@ function cargarSidebarFavoritos() {
 
   let html = `<h5 class="mb-3 text-info"><i class="fas fa-star"></i> Mis Favoritos</h5>`;
 
-  // Hoteles favoritos
   html += `<h6 class="text-warning">Hoteles</h6>`;
   if (favHoteles.length === 0) {
     html += `<div class="text-muted mb-3">No tienes hoteles favoritos.</div>`;
@@ -788,7 +779,6 @@ function cargarSidebarFavoritos() {
     });
   }
 
-  // Atractivos favoritos
   html += `<h6 class="text-success">Atractivos</h6>`;
   if (favAtractivos.length === 0) {
     html += `<div class="text-muted mb-3">No tienes atractivos favoritos.</div>`;
